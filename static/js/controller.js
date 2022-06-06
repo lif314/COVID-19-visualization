@@ -1,6 +1,28 @@
 // 请求控制
 
-<!--    获取当前时间: 以服务器的时间为主-->
+$('#theme').change(function () {
+    console.log("更改数据")
+    //初始化echarts实例
+    var selector = document.getElementById("theme-selector")
+    var index = selector.selectedIndex; // 选中索引
+    var theme = selector.options[index].value;//要的值
+    console.log("theme:" , theme)
+
+    var ec_center = echarts.init(document.getElementById("center-bottom"), theme);
+    var ec_left2 = echarts.init(document.getElementById("left-bottom"), theme);
+    var ec_left1 = echarts.init(document.getElementById("left-top"), theme);
+    var ec_right2 = echarts.init(document.getElementById("right-bottom"), theme);
+    var ec_right1 = echarts.init(document.getElementById("right-top"), theme);
+
+    ec_center.setOption(optionMap);
+    ec_left2.setOption(option_left2);
+    ec_left1.setOption(option_left1);
+    ec_right2.setOption(option_right2);
+    ec_right1.setOption(option_right1);
+
+})
+
+//  获取当前时间: 以服务器的时间为主
 function getTime() {
     $.ajax({
         url: '/time',
@@ -52,11 +74,11 @@ function get_left_top() {
         success: function (data) {
             // console.log("data:", data )
             option_left1.xAxis.data = data.day
-			option_left1.series[0].data = data.confirm
-			option_left1.series[1].data = data.suspect
-			option_left1.series[2].data = data.heal
-			option_left1.series[3].data = data.dead
-			ec_left1.setOption(option_left1)
+            option_left1.series[0].data = data.confirm
+            option_left1.series[1].data = data.suspect
+            option_left1.series[2].data = data.heal
+            option_left1.series[3].data = data.dead
+            ec_left1.setOption(option_left1)
         },
         error: function (xhr, type, errorThrown) {
             console.log("获取时间失败：", errorThrown)
@@ -72,9 +94,9 @@ function get_left_bottom() {
         success: function (data) {
             // console.log("data:", data )
             option_left2.xAxis.data = data.day
-			option_left2.series[0].data = data.confirm_add
-			option_left2.series[1].data = data.suspect_add
-			ec_left2.setOption(option_left2)
+            option_left2.series[0].data = data.confirm_add
+            option_left2.series[1].data = data.suspect_add
+            ec_left2.setOption(option_left2)
         },
         error: function (xhr, type, errorThrown) {
             console.log("获取时间失败：", errorThrown)
@@ -85,17 +107,17 @@ function get_left_bottom() {
 
 // 柱状图
 function get_right_top_data() {
-	$.ajax({
-		url:"/right_top",
-		success: function(data) {
-			option_right1.xAxis.data = data.city
-			option_right1.series[0].data = data.confirm
-			ec_right1.setOption(option_right1)
-		},
-		error: function(xhr, type, errorThrown) {
+    $.ajax({
+        url: "/right_top",
+        success: function (data) {
+            option_right1.xAxis.data = data.city
+            option_right1.series[0].data = data.confirm
+            ec_right1.setOption(option_right1)
+        },
+        error: function (xhr, type, errorThrown) {
 
-		}
-	})
+        }
+    })
 }
 
 // 词云图
@@ -103,9 +125,9 @@ function get_right_bottom() {
     $.ajax({
         url: "/right_bottom",
         success: function (data) {
-            console.log("data:", data )
-			option_right2.series[0].data = data.kws
-			ec_right2.setOption(option_right2)
+            console.log("data:", data)
+            option_right2.series[0].data = data.kws
+            ec_right2.setOption(option_right2)
         },
         error: function (xhr, type, errorThrown) {
             console.log("获取时间失败：", errorThrown)
@@ -124,8 +146,8 @@ get_right_bottom()
 
 //  定时更新
 setInterval(getTime, 1000)
-setInterval(get_left_top, 1000*100)
-setInterval(get_left_bottom, 1000*100)
-setInterval(get_center_bottom, 1000*100)
-setInterval(get_right_top_data, 1000*100)
-setInterval(get_right_bottom, 1000*100)
+setInterval(get_left_top, 1000 * 100)
+setInterval(get_left_bottom, 1000 * 100)
+setInterval(get_center_bottom, 1000 * 100)
+setInterval(get_right_top_data, 1000 * 100)
+setInterval(get_right_bottom, 1000 * 100)

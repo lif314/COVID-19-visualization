@@ -4,9 +4,9 @@ var mydata = []
 
 var optionMap = {
     title: {
-        text: '',
+        text: '国内疫情分布',
         subtext: '',
-        x: 'left'
+        x: 'center'
     },
     tooltip: {
         trigger: 'item'
