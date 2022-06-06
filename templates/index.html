@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid-19</title>
+    <script src="../static/js/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>
+    Test
+</h1>
+
+<button>点击</button>
+<script>
+    $("button").click(function (){
+        $.ajax({
+            url: "/ajax",
+            type:'post',
+            data: {
+                "id": 1,
+                "name": "ajax"
+            },
+            success: function (res){
+                $("h1").html("加油" + res)
+            },
+            error: function (){
+                alert("发送失败")
+        }
+
+        })
+    })
+</script>
+
+</body>
+
+</html>
