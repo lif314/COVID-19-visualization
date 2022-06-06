@@ -114,7 +114,6 @@ def update_hotsearch():
 
 
 if __name__ == "__main__":
-    update_details()
     l = len(sys.argv)
     if l == 1:
         s = """

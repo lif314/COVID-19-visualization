@@ -45,20 +45,3 @@ option_right1 = {
 	}]
 };
 ec_right1.setOption(option_right1)
-
-function get_right_top_data() {
-	$.ajax({
-		url:"/right_top",
-		success: function(data) {
-			option_right1.xAxis.data = data.city
-			option_right1.series[0].data = data.confirm
-			ec_right1.setOption(option_right1)
-		},
-		error: function(xhr, type, errorThrown) {
-
-		}
-	})
-}
-
-get_right_top_data()
-

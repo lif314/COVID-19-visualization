@@ -4,7 +4,7 @@ var ec_right2 = echarts.init(document.getElementById("right-bottom"), "dark");
 var datamessage = [];
 var option_right2 = {
 	title: {
-		text: "今日疫情热搜",
+		text: "今日疫情实时播报热词",
 		textStyle: {
 			color: 'white'
 		},
@@ -40,23 +40,3 @@ var option_right2 = {
 };
 //使用制定的配置项和数据显示图表
 ec_right2.setOption(option_right2);
-
-// 获取数据
-// 获取全国数据
-function get_right_bottom() {
-    $.ajax({
-        url: "/right_bottom",
-        success: function (data) {
-            console.log("data:", data )
-			option_right2.series[0].data = data.kws
-			ec_right2.setOption(option_right2)
-        },
-        error: function (xhr, type, errorThrown) {
-            console.log("获取时间失败：", errorThrown)
-        }
-    })
-}
-
-get_right_bottom()
-
-

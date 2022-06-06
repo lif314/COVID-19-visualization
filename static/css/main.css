@@ -10,10 +10,11 @@ body{
     height: 10%;
     top: 0;
     left: 30%;
-    font-size: 30px;
+    font-size: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: deepskyblue;
 }
 
 /*时间*/
@@ -22,7 +23,7 @@ body{
 	height: 10%;
 	top: 5%;
 	right: 2%;
-	color: #FFFFFF;
+	color: lightskyblue;
 	font-size: 20px;
 }
 
@@ -30,9 +31,9 @@ body{
 #author{
     position: absolute;
 	height: 10%;
-	top: 5%;
+	top: 1%;
 	left: 2%;
-	color: #FFFFFF;
+	color: lightskyblue;
 	font-size: 20px;
 }
 
@@ -43,7 +44,7 @@ body{
     height: 45%;
     top: 10%;
     left: 0;
-    background: aliceblue;
+    /*background: aliceblue;*/
 }
 
 /*增量趋势*/
@@ -53,7 +54,7 @@ body{
     height: 45%;
     top: 55%;
     left: 0;
-    background: aqua;
+    /*background: aqua;*/
 }
 
 /*关键数字*/
@@ -92,7 +93,7 @@ body{
     height: 60%;
     top: 40%;
     left: 30%;
-    background: azure;
+    /*background: azure;*/
 }
 
 /*柱状图*/
@@ -102,7 +103,7 @@ body{
     height: 45%;
     top: 10%;
     right: 0;
-    background: aliceblue;
+    /*background: aliceblue;*/
 }
 
 /*热搜词云图*/
@@ -112,7 +113,7 @@ body{
     height: 45%;
     top: 55%;
     right: 0;
-    background: aqua;
+    /*background: aqua;*/
 }
 
 

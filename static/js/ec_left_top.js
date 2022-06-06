@@ -144,27 +144,3 @@ var option_left1 = {
       };
 
 ec_left1.setOption(option_left1);
-
-
-
-// 获取数据
-// 获取全国数据
-function get_left_top() {
-    $.ajax({
-        url: "/left_top",
-        success: function (data) {
-            // console.log("data:", data )
-            option_left1.xAxis.data = data.day
-			option_left1.series[0].data = data.confirm
-			option_left1.series[1].data = data.suspect
-			option_left1.series[2].data = data.heal
-			option_left1.series[3].data = data.dead
-			ec_left1.setOption(option_left1)
-        },
-        error: function (xhr, type, errorThrown) {
-            console.log("获取时间失败：", errorThrown)
-        }
-    })
-}
-
-get_left_top()

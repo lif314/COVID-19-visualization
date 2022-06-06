@@ -130,23 +130,3 @@ var option_left2 = {
 
 ec_left2.setOption(option_left2);
 
-// 获取数据
-// 获取全国数据
-function get_left_bottom() {
-    $.ajax({
-        url: "/left_bottom",
-        success: function (data) {
-            // console.log("data:", data )
-            option_left2.xAxis.data = data.day
-			option_left2.series[0].data = data.confirm_add
-			option_left2.series[1].data = data.suspect_add
-			ec_left2.setOption(option_left2)
-        },
-        error: function (xhr, type, errorThrown) {
-            console.log("获取时间失败：", errorThrown)
-        }
-    })
-}
-
-get_left_bottom()
-

@@ -1,7 +1,6 @@
 import random
 import string
 from jieba.analyse import extract_tags
-import math
 from flask import Flask, render_template, request, jsonify
 
 import service.time_service as time_service
@@ -26,7 +25,7 @@ def get_time():
 @app.route("/center_top", methods=["GET"])
 def get_center_top_data():
     data = db_service.get_center_top_data()
-    return jsonify({"confirm": data[0], "suspect": data[1], "heal": data[2], "dead": data[3]})
+    return jsonify({"confirm": int(data[0]), "suspect": int(data[1]), "heal": int(data[2]), "dead": int(data[3])})
 
 
 # 全国疫情地图数据
@@ -89,7 +88,7 @@ def get_right_bottom_data():
         ks = extract_tags(k)
         for j in ks:
             if not j.isdigit() and num < 50:
-                v = random.randint(1,1000)
+                v = random.randint(1, 1000)
                 d.append({"name": j, "value": v})
                 num = num + 1
     return jsonify({"kws": d})

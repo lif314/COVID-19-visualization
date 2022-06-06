@@ -76,22 +76,3 @@ var optionMap = {
 
 //使用制定的配置项和数据显示图表
 ec_center.setOption(optionMap);
-
-
-// 获取全国数据
-function get_center_bottom() {
-    $.ajax({
-        url: "/center_bottom",
-        success: function (data) {
-            // console.log("data:", data )
-            optionMap.series[0].data = data.map;
-            ec_center.setOption(optionMap);
-        },
-        error: function (xhr, type, errorThrown) {
-            console.log("获取时间失败：", errorThrown)
-        }
-    })
-}
-
-// setInterval(get_center_bottom, 1000)
-get_center_bottom()
