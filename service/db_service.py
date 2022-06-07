@@ -20,7 +20,6 @@ def close_conn(conn, cursor):
 
 def query(sql, *args):
     """
-
     :param sql:
     :param args:
     :return:
