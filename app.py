@@ -2,11 +2,41 @@ import random
 import string
 from jieba.analyse import extract_tags
 from flask import Flask, render_template, request, jsonify
+from flask_apscheduler import APScheduler
 
 import service.time_service as time_service
 import service.db_service as db_service
+import service.realtime_service as realtime_service
+
+
+class Config(object):
+    SCHEDULER_API_ENABLED = True
+
 
 app = Flask(__name__, template_folder=r"./templates")
+scheduler = APScheduler()
+
+
+# @scheduler.task('interval', id='do_job_1', seconds=30, misfire_grace_time=900) # 测试
+@scheduler.task('cron', id='do_job_1', hour=10, misfire_grace_time=900) # 每天10点更新
+def job_update_history():
+    print("更新历史数据")
+    realtime_service.update_history()
+
+
+# @scheduler.task('interval', id='do_job_2', seconds=30, misfire_grace_time=900) # 测试
+@scheduler.task('cron', id='do_job_2', hour=10, misfire_grace_time=900) # 每天10点更新
+def job_update_details():
+    print("更新详细数据")
+    realtime_service.update_details()
+
+
+# @scheduler.task('interval', id='do_job_3', seconds=5, misfire_grace_time=900) # 测试
+@scheduler.task('interval', id='do_job_3', seconds=60 * 60 * 5, misfire_grace_time=900) # 每3小时更新一次
+def job_update_hot():
+    print("更新词云图数据")
+    # TODO Message: 'chromedriver.exe' executable needs to be in PATH. Windows系统问题，部署时可以解决
+    # realtime_service.update_hotsearch()
 
 
 @app.route("/")
@@ -106,4 +136,6 @@ def ajax():
 
 
 if __name__ == '__main__':
+    scheduler.init_app(app)
+    scheduler.start()
     app.run(host="127.0.0.1", port=5000, debug=True)

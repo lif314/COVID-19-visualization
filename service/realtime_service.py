@@ -4,7 +4,7 @@ import traceback
 
 import pymysql
 
-from crawler_service import get_baidu_Realtime_broadcast, get_tencent_data
+from .crawler_service import get_baidu_Realtime_broadcast, get_tencent_data
 
 
 # 实时更新数据库数据
@@ -25,11 +25,28 @@ def close_conn(conn, cursor):
         conn.close()
 
 
+def clean_details():
+    cursor = None
+    conn = None
+    try:
+        conn, cursor = get_conn()
+        sql = "TRUNCATE TABLE  details"
+        cursor.execute(sql)
+        conn.commit()
+        print(f"{time.asctime()}清除details数据")
+    except:
+        traceback.print_exc()
+    finally:
+        close_conn(conn, cursor)
+
+
 # 定义更新细节函数
 def update_details():
     cursor = None
     conn = None
     try:
+        # 先清除数据
+        clean_details()
         li = get_tencent_data()[1]  # 1代表最新数据
         conn, cursor = get_conn()
         sql = "insert into details(update_time,province,city,confirm,confirm_add,heal,dead) values(%s,%s,%s,%s,%s,%s,%s)"
@@ -112,7 +129,7 @@ def update_hotsearch():
     finally:
         close_conn(conn, cursor)
 
-
+# 脚本定时任务
 if __name__ == "__main__":
     l = len(sys.argv)
     if l == 1:
