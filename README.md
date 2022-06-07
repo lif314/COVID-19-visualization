@@ -41,7 +41,7 @@ pip install -r requirements.txt
     # c创建游标A
     cursor = conn.cursor()
     return conn, cursor
-```
+    ```
   
 - Run
 
