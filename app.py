@@ -56,12 +56,15 @@ def get_left_top_data():
 @app.route("/left_bottom", methods=["GET"])
 def get_left_bottom_data():
     data = db_service.get_left_bottom_data()
-    day, confirm_add, suspect_add = [], [], []
-    for a, b, c in data:
+    day, confirm_add, suspect_add, heal_add, dead_add = [], [], [], [], []
+    for a, b, c, d, e in data:
         day.append(a.strftime("%m-%d"))
         confirm_add.append(b)
         suspect_add.append(c)
-    return jsonify({"day": day, "confirm_add": confirm_add, "suspect_add": suspect_add})
+        heal_add.append(d)
+        dead_add.append(e)
+    return jsonify({"day": day, "confirm_add": confirm_add, "suspect_add": suspect_add, "heal_add": heal_add,
+                    "dead_add": dead_add})
 
 
 # 柱状图数据

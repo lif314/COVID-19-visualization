@@ -96,6 +96,8 @@ function get_left_bottom() {
             option_left2.xAxis.data = data.day
             option_left2.series[0].data = data.confirm_add
             option_left2.series[1].data = data.suspect_add
+             option_left2.series[2].data = data.heal_add
+             option_left2.series[3].data = data.dead_add
             ec_left2.setOption(option_left2)
         },
         error: function (xhr, type, errorThrown) {

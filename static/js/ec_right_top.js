@@ -3,7 +3,7 @@ var ec_right1 = echarts.init(document.getElementById("right-top"), "dark");
 
 option_right1 = {
     title: {
-        text: '非湖北地区城市确诊TOP5',
+        text: '上海地区确诊TOP10',
         textStyle: {
             color: 'white'
         },
@@ -34,6 +34,12 @@ option_right1 = {
         type: 'category',
         //                              scale:true,
         data: []
+    },
+     //工具框，可以选择
+    toolbox: {
+        feature: {
+            saveAsImage: {} //下载工具
+        }
     },
     yAxis: {
         type: 'value',

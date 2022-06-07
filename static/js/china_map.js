@@ -6,11 +6,27 @@ var optionMap = {
     title: {
         text: '国内疫情分布',
         subtext: '',
-        x: 'center'
+        x: 'center',
+        textStyle:{
+        //文字颜色
+        color:'white',
+        //字体风格,'normal','italic','oblique'
+        fontStyle:'normal',
+        fontWeight:'bold',
+        //字体系列
+        fontFamily:'sans-serif',
+        //字体大小
+　　　　 fontSize:30}
     },
     tooltip: {
         trigger: 'item'
     },
+     //工具框，可以选择
+    // toolbox: {
+    //     feature: {
+    //         saveAsImage: {} //下载工具
+    //     }
+    // },
     //左侧小导航图标
     visualMap: {
         show: true,

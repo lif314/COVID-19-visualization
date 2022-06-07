@@ -19,7 +19,7 @@ var option_left2 = {
         // x: 'left',
         // y 设置垂直安放位置，默认全图顶端，可选值：'top' ¦ 'bottom' ¦ 'center' ¦ {number}（y坐标，单位px）
         // y: 'top',
-        data: ['新增确诊', '新增疑似'],
+        data: ['新增确诊', '新增疑似', '新增治愈', '新增死亡'],
         left: 'center'
     },
 
@@ -116,6 +116,20 @@ var option_left2 = {
 
         {
             name: '新增疑似',
+            data: [],
+            type: 'line',
+            // 设置折线上圆点大小
+            smooth: true
+        },
+        {
+            name: '新增治愈',
+            data: [],
+            type: 'line',
+            // 设置折线上圆点大小
+            smooth: true
+        },
+             {
+            name: '新增死亡',
             data: [],
             type: 'line',
             // 设置折线上圆点大小

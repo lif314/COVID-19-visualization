@@ -39,13 +39,9 @@ def test():
 
 
 def get_center_top_data():
-    # sql = "select sum(confirm)," \
-    #       "(select suspect from history order by ds desc limit 1)," \
-    #       "sum(heal),sum(dead) from details " \
-    #       "where update_time=(select update_time from details order by update_time desc limit 1) "
-    sql = "select sum(confirm)," \
-          "(select suspect from history order by ds desc limit 1)," \
-          "sum(heal),sum(dead) from details "
+    sql = "SELECT SUM(confirm),"\
+          "(SELECT SUM(suspect) FROM history ORDER BY ds DESC LIMIT 1) AS suspect,"\
+          "SUM(heal),SUM(dead) FROM details"
     res = query(sql)
     return res[0]
 
@@ -68,21 +64,27 @@ def get_left_top_data():
 
 
 def get_left_bottom_data():
-    sql = "select ds,confirm_add,suspect_add from history"
+    sql = "SELECT ds,confirm_add,suspect_add,heal_add, dead_add FROM history"
     res = query(sql)
     return res
 
 
+# def get_right_top_data():
+#     sql = 'select city,confirm from ' \
+#           '(select city,confirm from details ' \
+#           'where update_time=(select update_time from details order by update_time desc limit 1) ' \
+#           'and province not in ("湖北","北京","上海","天津","重庆") ' \
+#           'union all ' \
+#           'select province as city,sum(confirm) as confirm from details ' \
+#           'where update_time=(select update_time from details order by update_time desc limit 1) ' \
+#           'and province in ("北京","上海","天津","重庆") group by province) as a ' \
+#           'order by confirm desc limit 5'
+#     res = query(sql)
+#     return res
+
+
 def get_right_top_data():
-    sql = 'select city,confirm from ' \
-          '(select city,confirm from details ' \
-          'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province not in ("湖北","北京","上海","天津","重庆") ' \
-          'union all ' \
-          'select province as city,sum(confirm) as confirm from details ' \
-          'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province in ("北京","上海","天津","重庆") group by province) as a ' \
-          'order by confirm desc limit 5'
+    sql = "SELECT city, confirm FROM covid.`details` WHERE province='上海' ORDER BY confirm DESC LIMIT 10"
     res = query(sql)
     return res
 
@@ -94,5 +96,5 @@ def get_right_bottom_data():
 
 
 if __name__ == "__main__":
-    print(get_right_bottom_data())
+    print(get_right_top_data())
     # print(test())

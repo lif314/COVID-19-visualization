@@ -14,6 +14,12 @@ var option_right2 = {
     tooltip: {
         show: false
     },
+     //工具框，可以选择
+    toolbox: {
+        feature: {
+            saveAsImage: {} //下载工具
+        }
+    },
     series: [{
         type: 'wordCloud',
         gridSize: 1,
