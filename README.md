@@ -46,7 +46,7 @@ pip install -r requirements.txt
 - Run
 
 ```shell
-python app.py
+    python app.py
 ```
 
 ## Demonstration
