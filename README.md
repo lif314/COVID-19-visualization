@@ -1,7 +1,5 @@
 # Covid-19 Visualization
 
-> @author 1951976 李林飞
-
 ## Introduction
 Covid-19 Visualization is the third lab assignment in my Human Interaction Techniques course.
 
